@@ -14,3 +14,5 @@ roles:
   - geerlingguy.php-pgsql
   - geerlingguy.php-pear
   - geerlingguy.php-pecl
+  - gantsign.keyboard
+  - robertdebock.locale

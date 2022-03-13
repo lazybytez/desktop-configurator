@@ -25,6 +25,8 @@
     - darkwizard242.shellcheck
     - docker
     - psh
+    - gantsign.keyboard
+    - robertdebock.locale
 
   tasks:
     - name: Install Golang
