@@ -27,7 +27,7 @@
     name: "firefox"
     classic: true
     state: absent
-    tags: [ 'software' ]
+  tags: [ 'software' ]
 
 # == Install/remove common software with APT
 - name: Install default system packages
