@@ -7,6 +7,8 @@ This playbook manages:
  - Installation of commonly used software
  - Configuration of commonly used software
 
+**NOTE:** This role changes your system language and keyboard layout to __German__!
+
 ### Usage
 
 #### Quick install
