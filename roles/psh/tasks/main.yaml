@@ -5,16 +5,17 @@
 # Installation is only run if PSH is not cloned locally.
 #
 - name: Clone PSH repository
+  become: false
   git:
     repo: https://github.com/pascal-zarrad/psh.git
-    dest: "{{ ansible_env.HOME }}/.psh"
+    dest: "/home/{{ lookup('env', 'USER') }}/.lazybytez-theme/psh"
     clone: true
     update: true
   register: psh_repository_result
   tags: [ 'software', 'psh' ]
-- name: Install PSH of necessary
-  command: "./install.sh {{ lookup('env', 'USER') }} --unattended"
+- name: Install PSH if necessary
+  command: "./install.sh --unattended"
   args:
-    chdir: "{{ ansible_env.HOME }}/.psh"
+    chdir: "/home/{{ lookup('env', 'USER') }}/.lazybytez-theme/psh"
   when: psh_repository_result.changed
   tags: [ 'software', 'psh' ]

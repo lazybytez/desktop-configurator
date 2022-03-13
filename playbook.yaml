@@ -42,16 +42,56 @@
       file:
         path: "/home/{{ lookup('env', 'USER') }}/.themes"
         state: directory
+      tags: [ 'theme' ]
     - name: Check for latest Catppuccin GTK version
       uri:
         url: "https://api.github.com/repos/catppuccin/gtk/releases/latest"
         return_content: yes
       register: catppuccin_gtk_version
+      tags: [ 'theme' ]
     - name: Set latest Catppuccin GTK version fact
       set_fact:
         latest_catppuccin_gtk_version: "{{ catppuccin_gtk_version.json.tag_name | regex_search('(update_[0-9]{1,2}_[0-9]{1,2}_[0-9]{1,4})') }}"
+      tags: [ 'theme' ]
     - name: Download and unarchive Catpuccin Gnome theme
       unarchive:
         src: https://github.com/catppuccin/gtk/releases/download/{{ latest_catppuccin_gtk_version }}/Catppuccin-purple.zip
         dest: "/home/{{ lookup('env', 'USER') }}/.themes"
         remote_src: yes
+      tags: [ 'theme' ]
+    # Install icon theme
+    - name: Clone Tela-circle icon theme repository
+      become: false
+      git:
+        repo: https://github.com/vinceliuice/Tela-circle-icon-theme.git
+        dest: "/home/{{ lookup('env', 'USER') }}/.lazybytez-theme/tela-circle-icon-theme"
+        clone: true
+        update: true
+      register: tela_icon_theme_repository_result
+      tags: [ 'theme' ]
+    - name: Install Tela-circle icon theme if necessary
+      become: false
+      command: "./install.sh purple"
+      args:
+        chdir: "/home/{{ lookup('env', 'USER') }}/.lazybytez-theme/tela-circle-icon-theme"
+      when: tela_icon_theme_repository_result.changed
+      tags: [ 'theme' ]
+    # Load gnome config
+    - name: Create .config directory
+      file:
+        path: "/home/{{ lookup('env', 'USER') }}/.config"
+        state: directory
+      tags: [ 'theme' ]
+    - name: Copy gnome settings
+      ansible.builtin.copy:
+        src: "gnome-settings.ini"
+        dest: "/home/{{ lookup('env', 'USER') }}/.config/gnome-settings.ini"
+        owner: "{{ lookup('env', 'USER') }}"
+        group: "{{ lookup('env', 'USER') }}"
+        mode: 0644
+      register: gnome_settings_upload
+      tags: [ 'theme' ]
+    - name: Load gnome settings
+      command: sh -c "dconf load / < /home/{{ lookup('env', 'USER') }}/.config/gnome-settings.ini"
+      when: gnome_settings_upload.changed
+      tags: [ 'theme' ]
