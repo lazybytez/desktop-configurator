@@ -2,3 +2,15 @@
 #
 # Ansible Galaxy requirements
 #
+roles:
+  - lean_delivery.java
+  - geerlingguy.nodejs
+  - ocha.yarn
+  - darkwizard242.shellcheck
+  - geerlingguy.php
+  - geerlingguy.php-versions
+  - geerlingguy.php-xdebug
+  - geerlingguy.php-redis
+  - geerlingguy.php-pgsql
+  - geerlingguy.php-pear
+  - geerlingguy.php-pecl
