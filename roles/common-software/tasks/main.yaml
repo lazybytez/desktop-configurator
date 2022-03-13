@@ -37,9 +37,6 @@
     state: latest
   loop: "{{ default_system_packages }}"
   tags: [ 'software' ]
-- name: Install Tabby
-  import_tasks: install_tabby.yaml
-  tags: [ 'software' ]
 
 # == Install/remove common software with snap
 - name: Install default snaps

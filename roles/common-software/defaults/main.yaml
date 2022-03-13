@@ -13,6 +13,7 @@ default_system_packages:
   - "chrome-gnome-shell"
   - "firefox"
   - "screenfetch"
+  - "konsole"
 default_snaps:
   - "spotify"
   - "code"
