@@ -26,6 +26,7 @@ default_system_packages:
   - "wngerman"
   - "wogerman"
   - "wswiss"
+  - "gnome-tweaks"
 default_snaps:
   - "spotify"
   - "code"

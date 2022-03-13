@@ -16,3 +16,4 @@ roles:
   - geerlingguy.php-pecl
   - gantsign.keyboard
   - robertdebock.locale
+  - petermosmans.customize-gnome

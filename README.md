@@ -1,4 +1,4 @@
-# Servers
+# Desktop Configurator
 This repository contains an Ansible Playbook, used to configure Ubuntu Desktop and Gnome with the LazyBytez theme and utilities.
 
 This playbook manages:
@@ -9,7 +9,7 @@ This playbook manages:
 
 **NOTE:** This role changes your system language and keyboard layout to __German__!
 
-You msutr at least install Ansible in version `2.10` to use this playbook!
+You must at least install Ansible in version `2.10` to use this playbook!
 
 ### Usage
 

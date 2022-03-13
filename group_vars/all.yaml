@@ -41,3 +41,20 @@ keyboard_layout: de
 
 # === Language settings
 locale_lang: de_DE.UTF-8
+
+# === Gnome customizations
+gnome_user: "{{ lookup('env', 'USER') }}"
+gnome_extensions:
+  - id: 19
+    enable: yes
+  - id: 307
+    enable: yes
+  - id: 1011
+    enable: yes
+  - id: 2087
+    enable: no
+  - id: 4451
+    enable: yes
+  - id: 4470
+    enable: yes
+gnome_theme_dl: https://dl1.pling.com/api/files/download/j/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTY0NTM4NTM5MywidSI6bnVsbCwibHQiOiJkb3dubG9hZCIsInMiOiI3OThjNWE2OWZhMzhjYzU1MTdmMDBjNGU0ZmViZTA1MWNiYmNjMjczNDUzYjc0ZmEzNWQzN2NmNmZjNjg2OWQ5OWQwOTQ4ZjRkNWNjZDdjYjBkMGFhY2NhYTBjYmQ3NWVkNTMzZTY0YmZhYTZlNmFiZWFjODY4MmUwNjZkYTcyMyIsInQiOjE2NDcyMTExNDIsInN0ZnAiOiJiM2IyZjkxMGIzNWEyYTU0OWZiMTVlMjFlMmU2N2MwZCIsInN0aXAiOiIxMDkuMTkzLjI0OS4yOCJ9.4LfiFAX_U4eKpxjU9O2cNLTt7oH3RrTTXpIcfAszmeU/Catppuccin.zip

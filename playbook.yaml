@@ -27,11 +27,31 @@
     - psh
     - gantsign.keyboard
     - robertdebock.locale
+    - petermosmans.customize-gnome
 
   tasks:
+    # === Additional software installd
     - name: Install Golang
       snap:
         name: "go"
         classic: true
         state: present
       tags: [ 'software' ]
+    # === Gnome Theme downloads
+    - name: Create .themes directory
+      file:
+        path: "/home/{{ lookup('env', 'USER') }}/.themes"
+        state: directory
+    - name: Check for latest Catppuccin GTK version
+      uri:
+        url: "https://api.github.com/repos/catppuccin/gtk/releases/latest"
+        return_content: yes
+      register: catppuccin_gtk_version
+    - name: Set latest Catppuccin GTK version fact
+      set_fact:
+        latest_catppuccin_gtk_version: "{{ catppuccin_gtk_version.json.tag_name | regex_search('(update_[0-9]{1,2}_[0-9]{1,2}_[0-9]{1,4})') }}"
+    - name: Download and unarchive Catpuccin Gnome theme
+      unarchive:
+        src: https://github.com/catppuccin/gtk/releases/download/{{ latest_catppuccin_gtk_version }}/Catppuccin-purple.zip
+        dest: "/home/{{ lookup('env', 'USER') }}/.themes"
+        remote_src: yes
