@@ -1,0 +1,16 @@
+---
+#
+# LazyBytez Desktop configurator playbook
+#
+# Configures an Ubuntu Desktop system with Gnome to match our preferred look and feel.
+# Also handles installation of common applications.
+#
+
+- name: Lazy Bytez Desktop Configurator
+  hosts: localhost
+  become: true
+  
+  roles:
+    - common-software
+    - docker
+    - psh

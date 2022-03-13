@@ -1,0 +1,10 @@
+---
+#
+# Install Docker on servers
+#
+- name: Install Docker
+  import_tasks: install_docker.yaml
+  tags: [ 'software', 'docker' ]
+- name: Install docker-compose
+  import_tasks: install_docker_compose.yaml
+  tags: [ 'software', 'docker' ]

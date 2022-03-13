@@ -1,0 +1,17 @@
+---
+#
+# Install Tabby terminal
+#
+- name: Add Tabby repository GPG key
+  apt_key:
+    url: https://packagecloud.io/eugeny/tabby/gpgkey
+    state: present
+- name: Add Tabby repository
+  apt_repository:
+    repo: deb https://packagecloud.io/eugeny/tabby/{{ ansible_distribution|lower }}/ {{ ansible_distribution_release|lower }} main
+    update_cache: true
+- name: Install Tabby terminal
+  apt:
+    name: tabby-terminal
+    update_cache: yes
+    state: latest

@@ -1,0 +1,20 @@
+---
+#
+# Install the PSH shell if not already done
+#
+# Installation is only run if PSH is not cloned locally.
+#
+- name: Clone PSH repository
+  git:
+    repo: https://github.com/pascal-zarrad/psh.git
+    dest: "{{ ansible_env.HOME }}/.psh"
+    clone: true
+    update: true
+  register: psh_repository_result
+  tags: [ 'software', 'psh' ]
+- name: Install PSH of necessary
+  command: "./install.sh {{ lookup('env', 'USER') }} --unattended"
+  args:
+    chdir: "{{ ansible_env.HOME }}/.psh"
+  when: psh_repository_result.changed
+  tags: [ 'software', 'psh' ]

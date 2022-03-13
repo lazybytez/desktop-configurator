@@ -1,0 +1,23 @@
+---
+# Common software installed using apt
+default_system_packages:
+  - "apt-transport-https"
+  - "ca-certificates"
+  - "curl"
+  - "git"
+  - "gnupg-agent"
+  - "htop"
+  - "nload"
+  - "software-properties-common"
+  - "vim"
+  - "chrome-gnome-shell"
+  - "firefox"
+  - "screenfetch"
+default_snaps:
+  - "spotify"
+  - "code"
+  - "intellij-idea-community"
+  - "phpstorm"
+  - "datagrip"
+  - "goland"
+  - "postman"

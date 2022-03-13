@@ -1,0 +1,51 @@
+---
+#
+# Update system and install common software
+#
+# == APT update & upgrade
+- name: Update apt repo and cache
+  apt:
+    update_cache: yes
+    force_apt_get: yes
+    cache_valid_time: 3600
+  tags: [ 'software' ]
+- name: Upgrade system packages
+  apt:
+    upgrade: dist
+    force_apt_get: yes
+    dpkg_options: 'force-confold,force-confdef'
+  tags: [ 'software' ]
+
+# == Ensure snap is installed and firefox snap is not installed
+- name: Install snap core
+  snap:
+    name: core
+    state: present
+  tags: [ 'software' ]
+- name: Remove Firefox snap if installed
+  snap:
+    name: "firefox"
+    classic: true
+    state: absent
+    tags: [ 'software' ]
+
+# == Install/remove common software with APT
+- name: Install default system packages
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+    state: latest
+  loop: "{{ default_system_packages }}"
+  tags: [ 'software' ]
+- name: Install Tabby
+  import_tasks: install_tabby.yaml
+  tags: [ 'software' ]
+
+# == Install/remove common software with snap
+- name: Install default snaps
+  snap:
+    name: "{{ item }}"
+    classic: true
+    state: present
+  loop: "{{ default_snaps }}"
+  tags: [ 'software' ]

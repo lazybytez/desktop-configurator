@@ -11,7 +11,7 @@ This playbook manages:
 
 #### Quick install
 ```shell
-sudo apt install ansible git && cd ~ && git clone https://github.com/lazybytez/desktop-configurator.git && cd desktop-configurator && ansible-galaxy install -r requirements.yaml
+sudo apt install ansible git && cd ~ && git clone https://github.com/lazybytez/desktop-configurator.git && cd desktop-configurator && ansible-galaxy install -r requirements.yaml && ansible-playbook -i inventory.yaml playbook.yaml -K
 ```
 
 #### Manual install
@@ -28,6 +28,6 @@ ansible-galaxy install -r requirements.yaml
 
 You can now run the playbook:
 ```bash
-ansible-playbook playbook.yaml -K
+ansible-playbook -i inventory.yaml playbook.yaml -K
 ```
 This command will ask for your `sudo` password! 
