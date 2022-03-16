@@ -2,10 +2,12 @@
 This repository contains an Ansible Playbook, used to configure Ubuntu Desktop and Gnome with the LazyBytez theme and utilities.
 
 This playbook manages:
- - Gnome Theme  & Icons
+ - Gnome Theme & Icons
  - Dock
  - Installation of commonly used software
  - Configuration of commonly used software
+
+This playbook automatically applies the beautiful [Catppuccin Themes](https://github.com/catppuccin/catppuccin) where applicable!
 
 **NOTE:** This role changes your system language and keyboard layout to __German__!
 
