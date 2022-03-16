@@ -13,7 +13,7 @@ default_system_packages:
   - "chrome-gnome-shell"
   - "firefox"
   - "screenfetch"
-  - "konsole"
+  - "terminator"
   - "language-pack-de"
   - "language-pack-gnome-de"
   - "firefox-locale-de"
