@@ -95,23 +95,12 @@
       command: sh -c "dconf load / < /home/{{ lookup('env', 'USER') }}/.lazybytez-theme/gnome-settings.ini"
       when: gnome_settings_upload.changed
       tags: [ 'theme' ]
-    # Load Konsole config
-    - name: Clone Konsole Catppuccin theme repository
-      become: false
-      git:
-        repo: https://github.com/catppuccin/konsole.git
-        dest: "/home/{{ lookup('env', 'USER') }}/.lazybytez-theme/catppuccin-konsole"
-        clone: true
-        update: true
-      register: catppuccin_konsole_theme_repository_result
-      tags: [ 'theme' ]
+    # Load Terminator config
     - name: Copy Konsole Catppuccin theme
       copy:
-        src: "/home/{{ lookup('env', 'USER') }}/.lazybytez-theme/catppuccin-konsole/Catppuccin.colorscheme"
-        dest: "/home/{{ lookup('env', 'USER') }}/.local/share/konsole/Catppuccin.colorscheme"
-        remote_src: true
+        src: "terminator_config"
+        dest: "/home/{{ lookup('env', 'USER') }}/.config/terminator/config"
         owner: "{{ lookup('env', 'USER') }}"
         group: "{{ lookup('env', 'USER') }}"
         mode: 0644
-      when: catppuccin_konsole_theme_repository_result.changed
       tags: [ 'theme' ]
