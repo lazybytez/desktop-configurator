@@ -18,6 +18,7 @@ php_packages:
   - php
   - php-cli
   - php-common
+  - php-dev
   - php-mysql
   - php-xml
   - php-xmlrpc
@@ -30,7 +31,6 @@ php_packages:
   - php-bcmath
   - php-gd
   - php-imagick
-  - php-dev
 php_xdebug_version: 3.1.3
 php_xdebug_remote_port: "9003"
 php_xdebug_idekey: PHPSTORM
@@ -56,5 +56,7 @@ gnome_extensions:
   - id: 4451
     enable: yes
   - id: 4470
+    enable: yes
+  - id: 734
     enable: yes
 gnome_theme_dl: https://dl1.pling.com/api/files/download/j/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTY0NTM4NTM5MywidSI6bnVsbCwibHQiOiJkb3dubG9hZCIsInMiOiI3OThjNWE2OWZhMzhjYzU1MTdmMDBjNGU0ZmViZTA1MWNiYmNjMjczNDUzYjc0ZmEzNWQzN2NmNmZjNjg2OWQ5OWQwOTQ4ZjRkNWNjZDdjYjBkMGFhY2NhYTBjYmQ3NWVkNTMzZTY0YmZhYTZlNmFiZWFjODY4MmUwNjZkYTcyMyIsInQiOjE2NDcyMTExNDIsInN0ZnAiOiJiM2IyZjkxMGIzNWEyYTU0OWZiMTVlMjFlMmU2N2MwZCIsInN0aXAiOiIxMDkuMTkzLjI0OS4yOCJ9.4LfiFAX_U4eKpxjU9O2cNLTt7oH3RrTTXpIcfAszmeU/Catppuccin.zip

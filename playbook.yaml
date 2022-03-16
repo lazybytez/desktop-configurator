@@ -17,11 +17,11 @@
     - ocha.yarn
     - geerlingguy.php
     - geerlingguy.php-versions
-    - geerlingguy.php-xdebug
+    - geerlingguy.php-pecl
     - geerlingguy.php-redis
     - geerlingguy.php-pgsql
     - geerlingguy.php-pear
-    - geerlingguy.php-pecl
+    - geerlingguy.php-xdebug
     - darkwizard242.shellcheck
     - docker
     - psh
@@ -77,10 +77,13 @@
       when: tela_icon_theme_repository_result.changed
       tags: [ 'theme' ]
     # Load gnome config
-    - name: Create .config directory
-      file:
-        path: "/home/{{ lookup('env', 'USER') }}/.config"
-        state: directory
+    - name: Copy dconf loader
+      copy:
+        src: "load_dconf.sh"
+        dest: "/home/{{ lookup('env', 'USER') }}/.lazybytez-theme/load_dconf.sh"
+        owner: "{{ lookup('env', 'USER') }}"
+        group: "{{ lookup('env', 'USER') }}"
+        mode: 0755
       tags: [ 'theme' ]
     - name: Copy gnome settings
       copy:
@@ -92,11 +95,17 @@
       register: gnome_settings_upload
       tags: [ 'theme' ]
     - name: Load gnome settings
-      command: sh -c "dconf load / < /home/{{ lookup('env', 'USER') }}/.lazybytez-theme/gnome-settings.ini"
+      become: false
+      command: /home/{{ lookup('env', 'USER') }}/.lazybytez-theme/load_dconf.sh
       when: gnome_settings_upload.changed
       tags: [ 'theme' ]
     # Load Terminator config
-    - name: Copy Konsole Catppuccin theme
+    - name: Create Terminator config directory if missing
+      file:
+        path: "/home/{{ lookup('env', 'USER') }}/.config/terminator/"
+        state: directory
+      tags: [ 'theme' ]
+    - name: Copy Terminator Catppuccin theme
       copy:
         src: "terminator_config"
         dest: "/home/{{ lookup('env', 'USER') }}/.config/terminator/config"
