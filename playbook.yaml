@@ -17,11 +17,11 @@
     - ocha.yarn
     - geerlingguy.php
     - geerlingguy.php-versions
-    - geerlingguy.php-xdebug
+    - geerlingguy.php-pecl
     - geerlingguy.php-redis
     - geerlingguy.php-pgsql
     - geerlingguy.php-pear
-    - geerlingguy.php-pecl
+    - geerlingguy.php-xdebug
     - darkwizard242.shellcheck
     - docker
     - psh
@@ -96,7 +96,12 @@
       when: gnome_settings_upload.changed
       tags: [ 'theme' ]
     # Load Terminator config
-    - name: Copy Konsole Catppuccin theme
+    - name: Create Terminator config directory if missing
+      file:
+        path: "/home/{{ lookup('env', 'USER') }}/.config/terminator/"
+        state: directory
+      tags: [ 'theme' ]
+    - name: Copy Terminator Catppuccin theme
       copy:
         src: "terminator_config"
         dest: "/home/{{ lookup('env', 'USER') }}/.config/terminator/config"
