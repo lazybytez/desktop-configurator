@@ -76,10 +76,6 @@
         chdir: "/home/{{ lookup('env', 'USER') }}/.lazybytez-theme/tela-circle-icon-theme"
       when: tela_icon_theme_repository_result.changed
       tags: [ 'theme' ]
-    # Restart gnome shell
-    - name: Restart GNOME shell
-      command: killall -3 gnome-shell
-      tags: [ 'theme' ]
     # Load gnome config
     - name: Copy dconf loader
       copy:
@@ -116,8 +112,4 @@
         owner: "{{ lookup('env', 'USER') }}"
         group: "{{ lookup('env', 'USER') }}"
         mode: 0644
-      tags: [ 'theme' ]
-    # Restart gnome shell
-    - name: Restart GNOME shell
-      command: killall -3 gnome-shell
       tags: [ 'theme' ]
